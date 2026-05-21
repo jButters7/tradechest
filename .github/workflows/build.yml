@@ -18,11 +18,15 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
+      - name: Copy pom.xml to project folder
+        run: cp pom.xml TradeChest/tradechest-plugin/pom.xml
+
       - name: Build with Maven
+        working-directory: TradeChest/tradechest-plugin
         run: mvn clean package
 
       - name: Upload jar
         uses: actions/upload-artifact@v4
         with:
           name: TradeChest
-          path: target/TradeChest-2.0.0.jar
+          path: TradeChest/tradechest-plugin/target/TradeChest-2.0.0.jar
